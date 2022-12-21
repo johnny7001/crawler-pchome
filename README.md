@@ -35,3 +35,43 @@ prod後面加上商品的id, 可以進到商品頁面
             "url": "https://24h.pchome.com.tw/prod/DGBJDE-1900DF5EI"
         },
 ```
+* DataFrame格式 -> 篩選價格排序(低到高的top5)
+```
+                                            name  price                                              url
+19                                  NS《異度神劍3》中文版   1090  https://24h.pchome.com.tw/prod/DGCW13-1900FEF08
+3       Nintendo Switch Joy-Con (電光紫/電光橙) 左右手控制器   1920  https://24h.pchome.com.tw/prod/DGBJK3-1900B4HWE
+14  NS Nintendo Switch Joy-Con (電光綠/電光粉紅) 左右手控制器   1920  https://24h.pchome.com.tw/prod/DGBJK3-1900B4HWB
+13       Nintendo Switch Joy-Con (藍色/電光黃) 左右手控制器   1920  https://24h.pchome.com.tw/prod/DGBJK3-1900B4HWH
+12        【Nintendo 任天堂】Switch健身環大冒險+體感遊戲任選一+手腕帶   3780  https://24h.pchome.com.tw/prod/DGBJBH-A900BG124
+```
+# 爬取 家樂福商品  
+## 爬取家樂福網站商品, switch為例
+一頁以24為單位, start=0, 24, 36...也可以抓取總頁數再跑迴圈
+* 'https://online.carrefour.com.tw/zh/search/?q=switch&start=24#'
+```json
+{
+    "Results": [
+        {
+            "name": "NS 薩爾達傳說 曠野之息 中文版",
+            "price": "2080",
+            "item_img": "https://online.carrefour.com.tw/dw/image/v2/BFHC_PRD/on/demandware.static/-/Sites-carrefour-tw-m-inner/default/dw695330b0/images/large/0253077_s-.jpeg?sw=300&bgcolor=FFFFFF",
+            "url": "https://online.carrefour.com.tw//zh/%E4%BB%BB%E5%A4%A9%E5%A0%82/4413324000101.html"
+        },
+        {
+            "name": "NS 寶可夢 明亮珍珠 中文版",
+            "price": "1690",
+            "item_img": "https://online.carrefour.com.tw/dw/image/v2/BFHC_PRD/on/demandware.static/-/Sites-carrefour-tw-m-inner/default/dw6e0cf69b/images/large/44133423001_P1.jpg?sw=300&bgcolor=FFFFFF",
+            "url": "https://online.carrefour.com.tw//zh/%E4%BB%BB%E5%A4%A9%E5%A0%82/4413341900101.html"
+        }
+    ]
+}
+```
+* DataFrame格式 
+```
+name  price                                                url
+5   NS Switch 健身環大冒險 主機組合  11120  https://online.carrefour.com.tw//zh/%E4%BB%BB%...
+6         NS 世界遊戲大全51 中文版   1190  https://online.carrefour.com.tw//zh/%E4%BB%BB%...
+11        NS 舞力全開2022 中文版   1350  https://online.carrefour.com.tw//zh/%E4%BB%BB%...
+10     NS 角落小夥伴 在房間角落旅行 中   1390  https://online.carrefour.com.tw//zh/%E4%BB%BB%...
+9            NS 寶可夢 朱 中文版   1395  https://online.carrefour.com.tw//zh/%E4%BB%BB%...
+```
